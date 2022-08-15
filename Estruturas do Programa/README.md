@@ -119,6 +119,7 @@ namespace DocCSHARP.ProgramStruct
         {
             string[] args = Environment.GetCommandLineArgs();
             System.Console.WriteLine($"O programa está sendo executado em {args[0]} e seu valor de entrada é {args[1]}");
+            return 0;
         }
     }
 }
