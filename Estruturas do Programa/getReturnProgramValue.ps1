@@ -8,3 +8,5 @@ if($LastExitCode -eq 0){
 }
 
 Write-Host "Valor retornado = " $LastExitCode
+
+Wait-Event Timer.Elapsed
