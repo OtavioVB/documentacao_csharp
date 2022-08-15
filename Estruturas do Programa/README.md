@@ -98,10 +98,28 @@ public static int Main()
         }
         System.Console.WriteLine(args[1].ToString());
     }
-    
+
     Console.WriteLine("Hello World!");
     return 0;
 }
 ```
 
 Lembrando que o `dotnet run -- 1` é utilizado o 1 para passar como valor de entrada ao programa.
+
+Vale ressaltar que quando é utilizado o comando `Environment.GetCommandLineArgs()` o primeiro valor do array de string's é o `diretório do arquivo` e não a variável de entrada.
+
+```csharp
+using System;
+
+namespace DocCSHARP.ProgramStruct
+{
+    internal class Program
+    {
+        public static int Main()
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            System.Console.WriteLine($"O programa está sendo executado em {args[0]} e seu valor de entrada é {args[1]}");
+        }
+    }
+}
+```
