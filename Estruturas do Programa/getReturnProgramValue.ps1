@@ -1,5 +1,5 @@
 dotnet build
-dotnet run 
+dotnet run -- 1
 
 if($LastExitCode -eq 0){
     Write-Host "Execução realizada com sucesso"

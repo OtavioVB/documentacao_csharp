@@ -29,4 +29,79 @@ Console.WriteLine("Hello World!");
 
 ## Como funciona os parâmetros do método principal
 
-Os parâmetros do método principal é responsável por resgatar os argumentos da linha de comando do processo sendo executado. É possível
+Os parâmetros do método principal é responsável por resgatar os argumentos da linha de comando do processo sendo executado. Quando não há nenhum fator de fora do programa que interfira na execução dele, não há nenhum valor de entrada então não há a necessidade de haver parâmetros:
+
+```csharp
+using System;
+
+namespace DocCSHARP.ProgramStruct
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+```
+
+No entanto, caso haja um ponto de entrada como nesse código:
+
+```csharp
+using System;
+
+namespace DocCSHARP.ProgramStruct
+{
+    internal class Program
+    {
+        static int Main(string[] args)
+        {
+            if(Convert.ToInt16(args[0]) == 1){
+                Console.WriteLine("Deu certo!");
+                return 1;
+            }
+            return 0;
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+```
+e
+```powershell
+dotnet build
+dotnet run -- 1
+
+if($LastExitCode -eq 0){
+    Write-Host "Execução realizada com sucesso"
+}else{
+    Write-Host "A execução do programa não pôde ser realizada com sucesso"
+}
+
+Write-Host "Valor retornado = " $LastExitCode
+
+Wait-Event Timer.Elapsed
+```
+
+Que também pode ser realizado dessa forma:
+```csharp
+public static int Main()
+{
+    string[] args = Environment.GetCommandLineArgs();
+    int result = 0;
+
+    if(int.TryParse(args[1], out result) == true){
+        if(result == 1)
+        {
+            Console.WriteLine("Deu certo!");
+            return 1;
+        }
+        System.Console.WriteLine(args[1].ToString());
+    }
+    
+    Console.WriteLine("Hello World!");
+    return 0;
+}
+```
+
+Lembrando que o `dotnet run -- 1` é utilizado o 1 para passar como valor de entrada ao programa.
